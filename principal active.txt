@@ -1,0 +1,49 @@
+package br.com.agenciastatus.android.olapos2;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class PrincipalActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_principal);
+    }
+
+
+    public void calculaIMC(View view) {
+        EditText ep=(EditText)findViewById(R.id.etPeso);
+        EditText ea=(EditText)findViewById(R.id.etAltura);
+
+        double peso=Double.parseDouble(ep.getText().toString());
+        double altura=Double.parseDouble(ea.getText().toString());
+
+        double imc=peso/(altura*altura);
+
+        TextView ti=(TextView)findViewById(R.id.tvImc);
+        ti.setText(""+imc);
+
+        TextView tr=(TextView)findViewById(R.id.resultado);
+
+        if(imc < 18.5){
+            tr.setText("abaixo do peso");
+        }else if(18.6 < imc && imc < 24.9){
+            tr.setText("saudavel");
+        }else if(25.0 < imc && imc < 29){
+            tr.setText("peso em excesso");
+        }else if(30 < imc){
+            tr.setText("Obeso");
+        }
+
+
+    }
+
+
+
+
+}
+
